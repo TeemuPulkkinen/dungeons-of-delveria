@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EntityDefinition" format=3 uid="uid://deiprqldmpeye"]
+
+[ext_resource type="Script" uid="uid://c0a14xxhegmfw" path="res://src/Entities/Actors/Components/ComponentDefinitions/equippable_component_definition.gd" id="1_gytfc"]
+[ext_resource type="Script" uid="uid://ben6gn0j8x00s" path="res://src/Entities/entity_definition.gd" id="1_nr0ky"]
+[ext_resource type="Texture2D" uid="uid://04buqru8gp15" path="res://assets/images/monochrome_packed.png" id="3_uwdie"]
+
+[sub_resource type="Resource" id="Resource_xlyfr"]
+script = ExtResource("1_gytfc")
+power_bonus = 4
+metadata/_custom_type_script = "uid://c0a14xxhegmfw"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3c7f"]
+atlas = ExtResource("3_uwdie")
+region = Rect2(560, 112, 16, 16)
+
+[resource]
+script = ExtResource("1_nr0ky")
+name = "Sword"
+texture = SubResource("AtlasTexture_b3c7f")
+color = Color(0.49803922, 0.49803922, 0.49803922, 1)
+is_blocking_movement = false
+type = 1
+item_definition = SubResource("Resource_xlyfr")
+metadata/_custom_type_script = "uid://ben6gn0j8x00s"

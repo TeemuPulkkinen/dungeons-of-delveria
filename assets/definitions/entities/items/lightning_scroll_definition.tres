@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EntityDefinition" format=3 uid="uid://bljscqisvloyo"]
+
+[ext_resource type="Script" uid="uid://ben6gn0j8x00s" path="res://src/Entities/entity_definition.gd" id="1_87u42"]
+[ext_resource type="Script" uid="uid://ufp1cspfhbhu" path="res://src/Entities/Actors/Components/ComponentDefinitions/lightning_damage_consumable_component_definition.gd" id="1_uloyb"]
+[ext_resource type="Texture2D" uid="uid://04buqru8gp15" path="res://assets/images/monochrome_packed.png" id="2_upin8"]
+
+[sub_resource type="Resource" id="Resource_uloyb"]
+script = ExtResource("1_uloyb")
+damage = 20
+maximum_range = 4
+metadata/_custom_type_script = "uid://ufp1cspfhbhu"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uloyb"]
+atlas = ExtResource("2_upin8")
+region = Rect2(528, 240, 16, 16)
+
+[resource]
+script = ExtResource("1_87u42")
+name = "Lightning Scroll"
+texture = SubResource("AtlasTexture_uloyb")
+color = Color(1, 1, 0, 1)
+is_blocking_movement = false
+type = 1
+item_definition = SubResource("Resource_uloyb")
+metadata/_custom_type_script = "uid://ben6gn0j8x00s"

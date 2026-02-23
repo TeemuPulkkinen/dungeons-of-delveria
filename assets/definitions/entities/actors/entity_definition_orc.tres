@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EntityDefinition" format=3 uid="uid://hm8dx8jebvwl"]
+
+[ext_resource type="Script" uid="uid://ben6gn0j8x00s" path="res://src/Entities/entity_definition.gd" id="1_34ng1"]
+[ext_resource type="Script" uid="uid://cn5gakklxucta" path="res://src/Entities/Actors/Components/ComponentDefinitions/fighter_component_definition.gd" id="1_chaqc"]
+[ext_resource type="Texture2D" uid="uid://ddmnyca1g48od" path="res://assets/resources/default_death_texture.tres" id="1_x1j3b"]
+[ext_resource type="Script" uid="uid://cauurwjal4kd7" path="res://src/Entities/Actors/Components/ComponentDefinitions/level_component_definition.gd" id="3_nk3ha"]
+[ext_resource type="Texture2D" uid="uid://04buqru8gp15" path="res://assets/images/monochrome_packed.png" id="5_ieapn"]
+
+[sub_resource type="Resource" id="Resource_x1j3b"]
+script = ExtResource("1_chaqc")
+max_hp = 10
+power = 3
+metadata/_custom_type_script = "uid://cn5gakklxucta"
+
+[sub_resource type="Resource" id="Resource_buuba"]
+script = ExtResource("3_nk3ha")
+xp_given = 35
+metadata/_custom_type_script = "uid://cauurwjal4kd7"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chaqc"]
+atlas = ExtResource("5_ieapn")
+region = Rect2(400, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_34ng1")
+name = "Orc"
+texture = SubResource("AtlasTexture_chaqc")
+color = Color(0.24705882, 0.49803922, 0.24705882, 1)
+fighter_definition = SubResource("Resource_x1j3b")
+ai_type = 1
+level_info = SubResource("Resource_buuba")
+metadata/_custom_type_script = "uid://ben6gn0j8x00s"
