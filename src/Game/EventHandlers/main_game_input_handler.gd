@@ -11,17 +11,46 @@ const directions = {
 	"move_down_right": Vector2i.DOWN + Vector2i.RIGHT,
 }
 
+var _held_dir: String = ""
+var _next_repeat_ms: int = 0
+var _repeat_started: bool = false
+
+const HOLD_INITIAL_DELAY_MS := 180
+const HOLD_REPEAT_DELAY_MS := 80
+
 const inventory_menu_scene = preload("res://src/GUI/InventoryMenu/inventory_menu.tscn")
 
 @export var reticle: Reticle
 
 func get_action(player: Entity) -> Action:
-	var action: Action = null
-	
 	for direction in directions:
 		if Input.is_action_just_pressed(direction):
+			_held_dir = direction
+			_repeat_started = false
+			var now := Time.get_ticks_msec()
+			_next_repeat_ms = now + HOLD_INITIAL_DELAY_MS
+			
 			var offset: Vector2i = directions[direction]
-			action = BumpAction.new(player, offset.x, offset.y)
+			return BumpAction.new(player, offset.x, offset.y)
+			
+		if _held_dir != "" and Input.is_action_pressed(_held_dir):
+			var now := Time.get_ticks_msec()
+			
+			#print("hold dir=", _held_dir,
+			#" pressed=", Input.is_action_pressed(_held_dir),
+			#" now=", now,
+			#" next=", _next_repeat_ms)
+			
+			
+			if now >= _next_repeat_ms:
+				_repeat_started = true
+				_next_repeat_ms = now + HOLD_REPEAT_DELAY_MS
+				var offset: Vector2i = directions[_held_dir]
+				return BumpAction.new(player, offset.x, offset.y)
+		else:
+			_clear_hold()
+	
+	var action: Action = null
 	
 	if Input.is_action_just_pressed("wait"):
 		action = WaitAction.new(player)
@@ -33,6 +62,7 @@ func get_action(player: Entity) -> Action:
 		action = PickupAction.new(player)
 	
 	if Input.is_action_just_pressed("drop"):
+		_clear_hold()
 		var selected_item: Entity = await get_item("Select an item to drop", player.inventory_component)
 		action = DropItemAction.new(player, selected_item)
 	
@@ -89,3 +119,19 @@ func activate_item(player: Entity) -> Action:
 	if target_position == Vector2i(-1, -1):
 		return null
 	return ItemAction.new(player, selected_item, target_position)
+
+func enter() -> void:
+	_held_dir = ""
+	_repeat_started = false
+	_next_repeat_ms = 0
+
+func exit() -> void:
+	_held_dir = ""
+	_repeat_started = false
+	_next_repeat_ms = 0
+
+# Clears the key being held where needed
+func _clear_hold() -> void:
+	_held_dir = ""
+	_repeat_started = false
+	_next_repeat_ms = 0
