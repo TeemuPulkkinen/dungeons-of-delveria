@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://hktt4u34bud3"]
 
 [ext_resource type="Script" uid="uid://3lqlcr6330cf" path="res://src/GUI/MainMenu/main_menu.gd" id="1_tcuw5"]
-[ext_resource type="Texture2D" uid="uid://b7rck6innx41u" path="res://assets/images/menu_background.png" id="2_uir76"]
+[ext_resource type="Texture2D" uid="uid://bdeamny2nf5g3" path="res://assets/images/main_menu_delveria.png" id="2_tcuw5"]
 [ext_resource type="FontFile" uid="uid://couy3648lu87n" path="res://assets/fonts/Kenney Pixel.ttf" id="3_yertb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1telm"]
@@ -70,7 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_uir76")
+texture = ExtResource("2_tcuw5")
 stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=895453512]
@@ -89,6 +89,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer" unique_id=224307667]
+visible = false
 layout_mode = 2
 text = "DUNGEON OF THE MAD GOD(OT)"
 label_settings = SubResource("LabelSettings_1telm")
