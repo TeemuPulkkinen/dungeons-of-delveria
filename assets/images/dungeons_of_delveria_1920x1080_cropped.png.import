@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdeamny2nf5g3"
-path="res://.godot/imported/main_menu_delveria.png-cebc491e73c910268acf15886f962d4e.ctex"
+uid="uid://bl3cc7jcxmqsg"
+path="res://.godot/imported/dungeons_of_delveria_1920x1080_cropped.png-9093a45420c413c332fd5c7f3064a5b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/main_menu_delveria.png"
-dest_files=["res://.godot/imported/main_menu_delveria.png-cebc491e73c910268acf15886f962d4e.ctex"]
+source_file="res://assets/images/dungeons_of_delveria_1920x1080_cropped.png"
+dest_files=["res://.godot/imported/dungeons_of_delveria_1920x1080_cropped.png-9093a45420c413c332fd5c7f3064a5b7.ctex"]
 
 [params]
 
