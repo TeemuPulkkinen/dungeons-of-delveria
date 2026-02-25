@@ -1,15 +1,17 @@
 [gd_resource type="Resource" script_class="TileDefinition" format=3 uid="uid://d2ejvdsx56y5n"]
 
 [ext_resource type="Script" uid="uid://dfyhd0bdq5u5w" path="res://src/Map/tile_definition.gd" id="1_u76qn"]
-[ext_resource type="Texture2D" uid="uid://04buqru8gp15" path="res://assets/images/monochrome_packed.png" id="2_5vnle"]
+[ext_resource type="Texture2D" uid="uid://cfyfovm608rb5" path="res://assets/images/tile_sprites/dod_floor_sand.png" id="2_5vnle"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lls8w"]
 atlas = ExtResource("2_5vnle")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_u76qn")
 texture = SubResource("AtlasTexture_lls8w")
+base_color = Color(0.7607843, 0.69803923, 0.5019608, 1)
+use_legacy_lit_dark_colors = false
 color_lit = Color(1, 0.49803922, 0, 1)
 color_dark = Color(0.49803922, 0.24705882, 0, 1)
 metadata/_custom_type_script = "uid://dfyhd0bdq5u5w"
