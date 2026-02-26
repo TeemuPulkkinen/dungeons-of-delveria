@@ -78,6 +78,29 @@ func get_action(player: Entity) -> Action:
 	if Input.is_action_just_pressed("descend"):
 		action = TakeStairsAction.new(player)
 	
+	if Input.is_action_just_pressed("shoot"):
+		_clear_hold()
+
+		var weapon: Entity = player.equipment_component.get_equipped_weapon() if player.equipment_component else null
+		var is_ranged: bool = (
+			weapon != null
+			and weapon.equippable_component != null
+			and weapon.equippable_component.is_ranged
+		)
+
+		if not is_ranged:
+			MessageLog.send_message("You have no ranged weapon equipped.", GameColors.IMPOSSIBLE)
+		else:
+			var weapon_range: int = weapon.equippable_component.range
+			var target_pos: Vector2i = await get_grid_position(player, 0, weapon_range)
+			
+			if target_pos == Vector2i(-1, -1):
+				pass #canceled
+			elif target_pos == player.grid_position:
+				MessageLog.send_message("You can't shoot yourself.", GameColors.IMPOSSIBLE)
+			else:
+				action = ShootAction.new(player, target_pos)
+				
 	return action
 
 func get_item(window_title: String, inventory: InventoryComponent, evaluate_for_next_step: bool = false) -> Entity:
@@ -93,15 +116,15 @@ func get_item(window_title: String, inventory: InventoryComponent, evaluate_for_
 	var has_item: bool = selected_item != null
 	var needs_targeting: bool = has_item and selected_item.consumable_component and selected_item.consumable_component.get_targeting_radius() != -1
 
-	if not evaluate_for_next_step or not needs_targeting:
-		await get_tree().physics_frame
-		get_parent().call_deferred("transition_to", InputHandler.InputHandlers.MAIN_GAME)
+	
+	await get_tree().physics_frame
+	get_parent().call_deferred("transition_to", InputHandler.InputHandlers.MAIN_GAME)
 
 	return selected_item
 
-func get_grid_position(player: Entity, radius: int) -> Vector2i:
+func get_grid_position(player: Entity, radius: int, max_range : int = -1) -> Vector2i:
 	get_parent().transition_to(InputHandler.InputHandlers.DUMMY)
-	var selected_position: Vector2i = await reticle.select_position(player, radius)
+	var selected_position: Vector2i = await reticle.select_position(player, radius, max_range)
 	await get_tree().physics_frame
 	get_parent().call_deferred("transition_to", InputHandler.InputHandlers.MAIN_GAME)
 	return selected_position

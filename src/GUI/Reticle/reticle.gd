@@ -24,12 +24,17 @@ var map_data: MapData
 @onready var camera: Camera2D = $Camera2D
 @onready var border: Line2D = $Line2D
 
+var origin: Vector2i
+var max_range: int = -1
+
 func _ready() -> void:
 	hide()
 	set_physics_process(false)
 
-func select_position(player: Entity, radius: int) -> Vector2i:
+func select_position(player: Entity, radius: int, p_max_range: int = -1) -> Vector2i:
 	map_data = player.map_data
+	origin = player.grid_position
+	max_range = p_max_range
 	grid_position = player.grid_position
 	
 	var player_camera: Camera2D = get_viewport().get_camera_2d()
@@ -52,7 +57,16 @@ func _physics_process(delta: float) -> void:
 	for direction in directions:
 		if Input.is_action_just_pressed(direction):
 			offset += directions[direction]
-	grid_position += offset
+	
+	if offset != Vector2i.ZERO:
+		grid_position += offset
+		
+		if max_range >= 0:
+			var dx : int = abs(grid_position.x - origin.x)
+			var dy : int = abs(grid_position.y - origin.y)
+			var dist : int = max(dx, dy)
+			if dist > max_range:
+				grid_position -= offset
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		position_selected.emit(grid_position)

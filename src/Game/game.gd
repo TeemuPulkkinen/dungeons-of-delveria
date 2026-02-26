@@ -15,6 +15,7 @@ func new_game() -> void:
 	player = Entity.new(null, Vector2i.ZERO, "player")
 	_add_player_start_equipment("dagger")
 	_add_player_start_equipment("leather_armor")
+	_add_player_start_equipment("bow")
 	player.level_component.level_up_required.connect(_on_player_level_up_requested)
 	player_created.emit(player)
 	remove_child(camera)

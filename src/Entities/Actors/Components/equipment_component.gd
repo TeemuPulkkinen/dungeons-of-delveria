@@ -20,6 +20,9 @@ func get_power_bonus() -> int:
 			bonus += item.equippable_component.power_bonus
 	return bonus
 
+func get_equipped_weapon() -> Entity:
+	return slots.get(EquippableComponent.EquipmentType.WEAPON)
+
 func is_item_equipped(item: Entity) -> bool:
 	return item in slots.values()
 
@@ -80,6 +83,7 @@ func toggle_equip(equippable_item: Entity, add_message: bool = true) -> void:
 		_equip_to_slot(slot, equippable_item, add_message)
 
 	_is_changing = false
+
 
 func get_save_data() -> Dictionary:
 	var equipped_indices := []

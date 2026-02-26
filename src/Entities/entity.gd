@@ -16,6 +16,7 @@ const entity_types = {
 	"sword": "res://assets/definitions/entities/items/sword_definition.tres",
 	"chainmail": "res://assets/definitions/entities/items/chainmail_definition.tres",
 	"leather_armor": "res://assets/definitions/entities/items/leather_armor_definition.tres",
+	"bow": "res://assets/definitions/entities/items/bow_definition.tres",
 }
 
 var key: String
