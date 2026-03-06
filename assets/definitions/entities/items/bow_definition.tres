@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0a14xxhegmfw" path="res://src/Entities/Actors/Components/ComponentDefinitions/equippable_component_definition.gd" id="1_4l51s"]
 [ext_resource type="Script" uid="uid://ben6gn0j8x00s" path="res://src/Entities/entity_definition.gd" id="2_l277r"]
-[ext_resource type="Texture2D" uid="uid://5q8hpxd64yw6" path="res://assets/images/tile_sprites/dod_bow.png" id="3_0ry8a"]
+[ext_resource type="Texture2D" uid="uid://b6meohm3qofuu" path="res://assets/images/weapon_sprites/dod_bow.png" id="3_l277r"]
 
 [sub_resource type="Resource" id="Resource_lqrbo"]
 script = ExtResource("1_4l51s")
@@ -11,7 +11,7 @@ is_ranged = true
 metadata/_custom_type_script = "uid://c0a14xxhegmfw"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr7ar"]
-atlas = ExtResource("3_0ry8a")
+atlas = ExtResource("3_l277r")
 
 [resource]
 script = ExtResource("2_l277r")
